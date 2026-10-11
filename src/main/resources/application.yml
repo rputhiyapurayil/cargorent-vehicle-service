@@ -1,0 +1,30 @@
+server:
+  port: ${PORT:8082}
+
+spring:
+  application:
+    name: cargorent-vehicle-service
+  datasource:
+    url: jdbc:mysql://${DB_HOST:localhost}:${DB_PORT:3306}/cargorent_vehicles?createDatabaseIfNotExist=true&serverTimezone=Asia/Kolkata
+    username: ${DB_USER:cargorent}
+    password: ${DB_PASSWORD:cargorent}
+  jpa:
+    hibernate:
+      ddl-auto: validate
+    open-in-view: false
+  flyway:
+    enabled: true
+
+services:
+  booking:
+    url: ${BOOKING_SERVICE_URL:http://localhost:8083}
+
+cargorent:
+  gps:
+    simulator:
+      enabled: true
+      interval-ms: 5000
+
+springdoc:
+  swagger-ui:
+    path: /swagger-ui.html
